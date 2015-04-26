@@ -1,6 +1,11 @@
 #!/bin/bash
 dirname=$1
-for file in dirname/*.clr
+files=`ls $dirname`
+for file in $files
 do
-    echo $file
+    f=${dirname}/${file}
+    echo "process $f"
+    ./grepForStuff.sh $f ${f}_out
 done
+
+

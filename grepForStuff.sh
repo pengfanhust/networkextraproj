@@ -1,15 +1,15 @@
 #!/bin/bash
 
 filename="$1"
-
-tcpdump -Ar $filename| grep -v 'TCP' | grep -v 'HTTP' | grep -v 'seq' > httpdata.txt
+outputfile="$2"
+tcpdump -Ar $filename| grep -v 'TCP' | grep -v 'HTTP' | grep -v 'seq' > $outputfile
 echo $filename
 
 echo "-Looking for lat=, latitude="
-egrep -io "[^a-zA-Z]?lat([^a-zA-Z]|itude).*[0-9]+(\.?)[0-9]+" httpdata.txt | sort | uniq -c
+egrep -io "[^a-zA-Z]?lat([^a-zA-Z]|itude).*[0-9]+(\.?)[0-9]+" $outputfile | sort | uniq -c
 
 #echo " Looking for pw=, pwd=, password=, user= " #generalized password and username. commented out because we searched for phone-specific
-#egrep -io "[^a-zA-Z]?pw[^a-zA-Z]?([=:])+(\"?)....." httpdata.txt | sort | uniq -c
+#egrep -io "[^a-zA-Z]?pw[^a-zA-Z]?([=:])+(\"?)....."  | sort | uniq -c
 #egrep -io "[^a-zA-Z]?pwd[^a-zA-Z]?([:=])+(\"?)...." httpdata.txt | sort | uniq -c
 #egrep -io "[^a-zA-Z]?password[^a-zA-Z]?([:=])+(\"?)...." httpdata.txt | sort | uniq -c
 #egrep -io "[^a-zA-Z]?user[^a-zA-Z]?([:=])+(\"?)...." httpdata.txt | sort | uniq -c
