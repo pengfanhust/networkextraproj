@@ -28,7 +28,7 @@ shift
 shift
 for var in "$@"
 do
-    echo "$var"
+    grep -i $var $outputfile | sort| uniq -c
 done
 
 echo " Looking for phone number, also phone=, number=  "
