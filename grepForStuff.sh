@@ -1,12 +1,8 @@
 #!/bin/bash
 
-echo $*
-exit 0
 filename="$1"
 outputfile="$2"
-IMEI="$3"
-password="$4"
-password1="$5"
+
 tcpdump -Ar $filename| grep -v 'TCP' | grep -v 'HTTP' | grep -v 'seq' > $outputfile
 echo $filename
 
@@ -27,15 +23,11 @@ egrep -io "[^a-zA-Z]?lat([^a-zA-Z]|itude).*[0-9]+(\.?)[0-9]+" $outputfile | sort
 
 echo "Looking for phone specific things"
 #phone-specific searches
-#grep -i $IMEI $outputfile | sort | uniq -c
 #grep -i "pengfan" $outputfile | sort| uniq -c
-#grep -i "ppkk315" $outputfile | sort| uniq -c
-#grep -i $password $outputfile | sort | uniq -c
-#grep -i $password1 $outputfile | sort | uniq -c
-
-#contact info (phone specific)
-grep -i "[strings in your contacts list]" $outputfile | sort | uniq -c
-grep -i "[phone numbers - yours and others'" $outputfile | sort | uniq -c
+for ((i = 3; i < $#; i++))
+do
+    echo $i
+done
 
 echo " Looking for phone number, also phone=, number=  "
 egrep -io "[^a-zA-Z]?number[^a-zA-Z]?([:=])+(\"?).........." $outputfile | sort | uniq -c
