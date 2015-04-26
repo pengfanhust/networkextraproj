@@ -1,7 +1,12 @@
 #!/bin/bash
 
+echo $*
+exit 0
 filename="$1"
 outputfile="$2"
+IMEI="$3"
+password="$4"
+password1="$5"
 tcpdump -Ar $filename| grep -v 'TCP' | grep -v 'HTTP' | grep -v 'seq' > $outputfile
 echo $filename
 
@@ -22,10 +27,11 @@ egrep -io "[^a-zA-Z]?lat([^a-zA-Z]|itude).*[0-9]+(\.?)[0-9]+" $outputfile | sort
 
 echo "Looking for phone specific things"
 #phone-specific searches
-grep -i "[your IMEI and/or device ID]" $outputfile | sort | uniq -c
-grep -i "355031040753366" $outputfile | sort | uniq -c
-grep -i "[your username(s)]" $outputfile | sort| uniq -c
-grep -i "[your passwords]" $outputfile | sort | uniq -c
+#grep -i $IMEI $outputfile | sort | uniq -c
+#grep -i "pengfan" $outputfile | sort| uniq -c
+#grep -i "ppkk315" $outputfile | sort| uniq -c
+#grep -i $password $outputfile | sort | uniq -c
+#grep -i $password1 $outputfile | sort | uniq -c
 
 #contact info (phone specific)
 grep -i "[strings in your contacts list]" $outputfile | sort | uniq -c
