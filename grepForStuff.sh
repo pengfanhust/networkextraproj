@@ -24,9 +24,11 @@ egrep -io "[^a-zA-Z]?lat([^a-zA-Z]|itude).*[0-9]+(\.?)[0-9]+" $outputfile | sort
 echo "Looking for phone specific things"
 #phone-specific searches
 #grep -i "pengfan" $outputfile | sort| uniq -c
-for ((i = 3; i < $#; i++))
+shift
+shift
+for var in "$@"
 do
-    echo ${i}
+    echo "$var"
 done
 
 echo " Looking for phone number, also phone=, number=  "
