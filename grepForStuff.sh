@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# the first argument is the tcpdump file name, the second argument is the output file name,
+# the rest part is the phone specified string need to be searched.
+
 filename="$1"
 outputfile="$2"
 
@@ -9,21 +12,8 @@ echo $filename
 echo "-Looking for lat=, latitude="
 egrep -io "[^a-zA-Z]?lat([^a-zA-Z]|itude).*[0-9]+(\.?)[0-9]+" $outputfile | sort | uniq -c
 
-#echo " Looking for pw=, pwd=, password=, user= " #generalized password and username. commented out because we searched for phone-specific
-#egrep -io "[^a-zA-Z]?pw[^a-zA-Z]?([=:])+(\"?)....."  | sort | uniq -c
-#egrep -io "[^a-zA-Z]?pwd[^a-zA-Z]?([:=])+(\"?)...." $outputfile | sort | uniq -c
-#egrep -io "[^a-zA-Z]?password[^a-zA-Z]?([:=])+(\"?)...." $outputfile | sort | uniq -c
-#egrep -io "[^a-zA-Z]?user[^a-zA-Z]?([:=])+(\"?)...." $outputfile | sort | uniq -c
-
-#echo " Looking for IMEI=  " #generalized imei. commented out because we searched for phone specific.
-#egrep -io "[^a-zA-Z]?IMEI[^a-zA-Z]?([:=])+(\"?)[0-9]{15,}" $outputfile | sort | uniq -c
-#egrep -io "[^a-zA-Z]?udid[^a-zA-Z]?([:=])+(\"?)[0-9]{15,}" $outputfile | sort | uniq -c
-#egrep -io "[^a-zA-Z]?uuid[^a-zA-Z]?([:=])+(\"?)[0-9]{15,}" $outputfile | sort | uniq -c
-#egrep -io "[^a-zA-Z]?-Id[^a-zA-Z]?([:=])+(\"?)[0-9]{15,}" $outputfile | sort | uniq -c
-
 echo "Looking for phone specific things"
-#phone-specific searches
-#grep -i "pengfan" $outputfile | sort| uniq -c
+#bypass the first two arguments, which is not the phone specified string
 shift
 shift
 for var in "$@"
