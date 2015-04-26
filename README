@@ -1,0 +1,30 @@
+Task 1:
+  Finish installed the meddle, haven't figure out how to use scripts to answer the following question:
+  How many sites are contacted by each app that you use? Does that traffic seem legitimate? Is there anything surprising in your data?
+
+  But I have use the meddle graph web page to find the answer. There is six app captured by the meddle:
+    *default*:              11 websites
+    NPR:                    2 websites
+    MicroMessenger:         6 websites
+    GoogleAdsense:          5 websites
+    *[fbiab*:               25 websites
+    *v1andsqi50100yybdqq*:  15 websites
+    The traffic seems legitimate for me.
+
+Task 2£»
+	The original script can only process one tcp dump file, and the phone specific part in that script need to be completed.
+	I have modified the script to solved the problem I mentioned. I add a script grepForStuffAllFile.sh, this script will go through
+    all the files in the specified directory and call the original script on each file. For the phone specific part search, I have modified
+	the original grepForStuff.sh file, when your call the grepForStuffAllFile.sh, you can specified the specific strings you want to search, the 
+	grepForStuff.sh will grep on all the strings you specified. For example, if you want to search password "123456" and account "loginname" on
+	all the tcp dumpfile in directory "tcpdump", you can run the following command:
+	./grepForStuffAllFile.sh tcpdump 123456 loginname
+	The number of the phone specific strings can be any number till the bash limit.
+	
+	Unfortunately, I haven't found any leak information except my QQ login number, which has already captured by the meddle. 
+
+
+Task 3:
+  Finished the mark job in the website.
+  Finished the survey.
+
