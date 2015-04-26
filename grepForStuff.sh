@@ -26,7 +26,7 @@ echo "Looking for phone specific things"
 #grep -i "pengfan" $outputfile | sort| uniq -c
 for ((i = 3; i < $#; i++))
 do
-    echo $i
+    echo ${i}
 done
 
 echo " Looking for phone number, also phone=, number=  "
