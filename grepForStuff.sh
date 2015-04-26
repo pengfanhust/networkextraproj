@@ -28,6 +28,7 @@ shift
 shift
 for var in "$@"
 do
+    echo "Looking for phone specific things $var"
     grep -i $var $outputfile | sort| uniq -c
 done
 
